@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.LkOwnController">
+    <children>
+        <AnchorPane layoutY="119.0" prefHeight="285.0" prefWidth="700.0" style="-fx-background-color: #B0E0E6;">
+         <children>
+            <Label layoutX="225.0" layoutY="14.0" text="Личный кабинет владельца">
+               <font>
+                  <Font name="Berlin Sans FB" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgButHome" fitHeight="200.0" fitWidth="253.0" layoutX="344.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pictures/pets.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nameText" layoutX="69.0" layoutY="48.0" prefHeight="22.0" prefWidth="143.0" text="Ваше имя:">
+               <font>
+                  <Font name="Berlin Sans FB" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="numberText" layoutX="69.0" layoutY="70.0" prefHeight="22.0" prefWidth="143.0" text="Ваш номер телефона:">
+               <font>
+                  <Font name="Baskerville Old Face" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="addressText" layoutX="69.0" layoutY="92.0" prefHeight="22.0" prefWidth="143.0" text="Ваш адрес:">
+               <font>
+                  <Font name="Berlin Sans FB" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="ChngOwnBut" layoutX="73.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #F0FFFF;" text="Изменить данные">
+               <effect>
+                  <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
+               </effect>
+            </Button>
+            <Button fx:id="MyReceptionsBut" layoutX="73.0" layoutY="170.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #F0FFFF;" text="Мои приемы">
+               <effect>
+                  <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
+               </effect>
+            </Button>
+            <Button fx:id="MyPetsBut" layoutX="73.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #F0FFFF;" text="Мои питомцы">
+               <effect>
+                  <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
+               </effect>
+            </Button>
+         </children>
+        </AnchorPane>
+        <Label layoutX="264.0" layoutY="27.0" text="VetClinicBD">
+            <font>
+                <Font name="Berlin Sans FB" size="35.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

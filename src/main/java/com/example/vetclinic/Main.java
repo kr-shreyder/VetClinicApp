@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws IOException, ClassNotFoundException, SQLException {
+    public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("auth-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 700, 400);

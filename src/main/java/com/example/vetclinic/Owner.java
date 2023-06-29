@@ -1,22 +1,33 @@
 package com.example.vetclinic;
 
 public class Owner {
+    private int id;
     private String name;
     private String number;
     private String address;
-    private String login;
-    private String password;
+    private int user_id;
 
-    public Owner(String name,String number, String address, String login, String password) {
+    public Owner(int id, int user_id, String name,String number, String address) {
+        this.id = id;
+        this.user_id = user_id;
         this.name = name;
         this.number = number;
         this.address = address;
-        this.login = login;
-        this.password = password;
     }
 
-    public Owner() {
+    public Owner(int user_id, String name, String number, String address) {
+        this.user_id = user_id;
+        this.name = name;
+        this.number = number;
+        this.address = address;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -25,22 +36,6 @@ public class Owner {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getNumber() {
@@ -57,5 +52,13 @@ public class Owner {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getUserId() {
+        return user_id;
+    }
+
+    public void setUserId(int user_id) {
+        this.user_id = user_id;
     }
 }

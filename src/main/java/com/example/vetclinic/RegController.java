@@ -29,7 +29,6 @@ public class RegController {
     @FXML
     void initialize() {
         regButton.setOnAction(event -> {
-
             try {
                 regNewUser();
             } catch (SQLException | ClassNotFoundException e) {
@@ -40,14 +39,23 @@ public class RegController {
 
     private void regNewUser() throws SQLException, ClassNotFoundException {
         DBhandler dbHandler = DBhandler.getInstance();
-        String name = regName.getText();
+        /*String name = regName.getText();
         String login = loginField.getText();
         String password = passwField.getText();
         String phoneNumber = regNumber.getText();
-        String address = regAddress.getText();
+        String address = regAddress.getText();*/
 
-        Owner owner = new Owner(name, phoneNumber, address, login, password);
+        String name = "Кристина";
+        String login = "Login";
+        String password = "Test";
+        String phoneNumber = "89119559170";
+        String address = "СПБ";
 
+        User user = new User(login, password);
+        user = dbHandler.createUser(user);
+        System.out.println(user.getId());
+
+        Owner owner = new Owner(user.getId(), name, phoneNumber, address);
         dbHandler.createOwner(owner);
     }
 }

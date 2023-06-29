@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vetclinic.AuthController">
+   <children>
+      <AnchorPane layoutY="119.0" prefHeight="284.0" prefWidth="700.0" style="-fx-background-color: #B0E0E6;">
+         <children>
+            <PasswordField fx:id="passwField" layoutX="238.0" layoutY="142.0" prefHeight="25.0" prefWidth="223.0" promptText="Пароль">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <TextField fx:id="loginField" layoutX="238.0" layoutY="103.0" prefHeight="25.0" prefWidth="223.0" promptText="Логин">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="201.0" layoutY="49.0" text="Авторизация пользователя">
+               <font>
+                  <Font name="Berlin Sans FB" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="authButton" layoutX="303.0" layoutY="194.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" style="-fx-background-color: #F0FFF0;" text="Войти" textAlignment="CENTER">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="15.0" offsetY="2.0" radius="7.0" width="15.0" />
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="264.0" layoutY="27.0" text="VetClinicBD">
+         <font>
+            <Font name="Berlin Sans FB" size="35.0" />
+         </font>
+      </Label>
+      <Button fx:id="logButton" layoutX="560.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="125.0" style="-fx-background-color: #F0FFF0;" text="Регистрация">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow blurType="TWO_PASS_BOX" height="15.0" offsetY="2.0" radius="7.0" width="15.0" />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

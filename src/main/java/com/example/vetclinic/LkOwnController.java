@@ -31,18 +31,21 @@ public class LkOwnController {
     private Label numberText;
     Owner owner;
 
-    /*@FXML
-    void initialize() {
-        Owner currentOwner = get
+    @FXML
+    void initialize() throws SQLException, ClassNotFoundException {
+        DBhandler dBhandler = DBhandler.getInstance();
+        Owner currentOwner = dBhandler.getOwner(dBhandler.getUser("Alex03log", "test").getId());
 
-        setOwner(currentOwner);
+        if (currentOwner != null) {
+            setOwner(currentOwner);
+        }
     }
-*/
+
     public void setOwner(Owner owner) {
         this.owner = owner;
 
-        nameText.setText("Ваше имя:" + owner.getName());
-        numberText.setText("Ваш телефон:" + owner.getNumber());
-        addressText.setText("Ваш адрес:" + owner.getAddress());
+        nameText.setText("Ваше имя: " + owner.getName());
+        numberText.setText("Ваш телефон: " + owner.getNumber());
+        addressText.setText("Ваш адрес: " + owner.getAddress());
     }
 }

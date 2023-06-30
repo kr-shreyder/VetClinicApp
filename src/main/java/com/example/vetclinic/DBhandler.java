@@ -67,7 +67,6 @@ public class DBhandler {
         try {
             PreparedStatement preparedStatement = dbConnector.prepareStatement(insertOwner, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, owner.getUserId());
-            System.out.println(owner.getUserId());
             preparedStatement.setString(2, owner.getName());
             preparedStatement.setString(3, owner.getNumber());
             preparedStatement.setString(4, owner.getAddress());
@@ -109,5 +108,32 @@ public class DBhandler {
         }
 
         return user;
+    }
+
+    public Owner getOwner(int userId) {
+        Owner owner = null;
+        String select = "SELECT * FROM " + Constants.USER_TABLE + " AS u " +
+                "INNER JOIN " + Constants.OWNER_TABLE + " AS o ON u.id = o.user_id " +
+                "WHERE u.id = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(select);
+            preparedStatement.setInt(1, userId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int ownerId = resultSet.getInt(Constants.OWNER_ID);
+                String name = resultSet.getString(Constants.OWNER_NAME);
+                String phoneNumber = resultSet.getString(Constants.OWNER_PHONE);
+                String address = resultSet.getString(Constants.OWNER_ADDRESS);
+
+                owner = new Owner(ownerId, name, phoneNumber, address);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return owner;
     }
 }

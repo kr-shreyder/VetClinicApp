@@ -7,6 +7,7 @@ public class Constants {
     public static final String USER_PASSWORD = "passwrd";
     public static final String USER_ROLE_ID = "role_id";
 
+    public static final String OWNER_ID = "id";
     public static final String OWNER_TABLE = "owners";
     public static final String OWNER_NAME = "name";
     public static final String OWNER_PHONE = "phone_number";

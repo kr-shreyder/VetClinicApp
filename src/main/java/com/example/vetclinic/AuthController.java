@@ -1,6 +1,5 @@
 package com.example.vetclinic;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import animations.Shake;
@@ -50,7 +49,8 @@ public class AuthController extends Controller {
         DBhandler dbHandler = DBhandler.getInstance();
         User user = dbHandler.getUser(logText, logPassword);
 
-        if (user != null) {
+        if (user != null && user.getRole_id() == 3) {
+            //Owner owner = DBhandler.getInstance().getOwner(user.getId());
             logButton.getScene().getWindow().hide();
             newWin("lk-owner-view.fxml");
         }

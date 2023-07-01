@@ -4,9 +4,12 @@ import java.sql.SQLException;
 
 import animations.Shake;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import static java.nio.file.Files.setOwner;
 
 public class AuthController extends Controller {
 
@@ -49,10 +52,14 @@ public class AuthController extends Controller {
         DBhandler dbHandler = DBhandler.getInstance();
         User user = dbHandler.getUser(logText, logPassword);
 
-        if (user != null && user.getRole_id() == 3) {
-            //Owner owner = DBhandler.getInstance().getOwner(user.getId());
+        if (user != null && user.getRoleId() == 3) {
+            Owner owner = DBhandler.getInstance().getOwner(user.getId());
+            Pet pet = DBhandler.getInstance().getPet(owner.getId());
+            //System.out.println(pet.getName());
             logButton.getScene().getWindow().hide();
-            newWin("lk-owner-view.fxml");
+            LkOwnController lkOwnController = (LkOwnController) newWin("lk-owner-view.fxml");
+            lkOwnController.setOwner(owner);
+            lkOwnController.setPet(pet);
         }
         else {
             Shake logAmimation = new Shake(loginField);
@@ -61,5 +68,4 @@ public class AuthController extends Controller {
             passAnimation.play();
         }
     }
-
 }

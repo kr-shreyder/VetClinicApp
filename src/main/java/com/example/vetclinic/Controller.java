@@ -10,7 +10,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Controller {
-    public void newWin (String window) {
+    public Controller newWin (String window) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
 
@@ -23,7 +23,9 @@ public class Controller {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
+
+        return loader.getController();
     }
 
     public static String hashPass(String pass) {

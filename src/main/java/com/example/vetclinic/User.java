@@ -42,11 +42,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRole_id() {
+    public int getRoleId() {
         return role_id;
     }
 
-    public void setRole_id(int role_id) {
+    public void setRoleId(int role_id) {
         this.role_id = role_id;
     }
 }

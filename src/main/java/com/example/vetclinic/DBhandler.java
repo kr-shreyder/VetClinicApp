@@ -112,9 +112,7 @@ public class DBhandler {
 
     public Owner getOwner(int userId) {
         Owner owner = null;
-        String select = "SELECT * FROM " + Constants.USER_TABLE + " AS u " +
-                "INNER JOIN " + Constants.OWNER_TABLE + " AS o ON u.id = o.user_id " +
-                "WHERE u.id = ?";
+        String select = "SELECT * FROM " + Constants.OWNER_TABLE + " WHERE user_id = ?";
 
         try {
             PreparedStatement preparedStatement = dbConnector.prepareStatement(select);
@@ -123,12 +121,12 @@ public class DBhandler {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                int ownerId = resultSet.getInt(Constants.OWNER_ID);
+                int id = resultSet.getInt(Constants.OWNER_ID);
                 String name = resultSet.getString(Constants.OWNER_NAME);
                 String phoneNumber = resultSet.getString(Constants.OWNER_PHONE);
                 String address = resultSet.getString(Constants.OWNER_ADDRESS);
 
-                owner = new Owner(ownerId, name, phoneNumber, address);
+                owner = new Owner(id, userId, name, phoneNumber, address);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,4 +134,31 @@ public class DBhandler {
 
         return owner;
     }
+
+    public Pet getPet(int ownerId) {
+        Pet pet = null;
+        String select = "SELECT p.name, b.name AS breed_name " +
+                "FROM " + Constants.PET_TABLE + " AS p " +
+                "INNER JOIN " + Constants.BREED_TABLE + " AS b ON p.breed_id = b.id " +
+                "WHERE p.owner_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(select);
+            preparedStatement.setInt(1, ownerId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String petName = resultSet.getString(Constants.PET_NAME);
+                String breedName = resultSet.getString(Constants.BREED_NAME);
+
+                pet = new Pet(petName, breedName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pet;
+    }
+
 }

@@ -66,8 +66,8 @@
             </Button>
             <TableView fx:id="TablePet" layoutX="367.0" layoutY="77.0" prefHeight="157.0" prefWidth="307.0">
               <columns>
-                <TableColumn prefWidth="152.66664123535156" text="Имя" />
-                <TableColumn prefWidth="152.66668701171875" text="Порода" />
+                <TableColumn fx:id="namePetCol" prefWidth="152.66664123535156" text="Имя" />
+                <TableColumn fx:id="breedPetCol" prefWidth="152.66668701171875" text="Порода" />
               </columns>
             </TableView>
          </children>

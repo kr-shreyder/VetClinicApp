@@ -1,13 +1,13 @@
 package com.example.vetclinic;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 import java.sql.SQLException;
 
-public class LkOwnController {
+public class LkOwnController extends Controller{
 
     @FXML
     private Button ChngOwnBut;
@@ -29,16 +29,21 @@ public class LkOwnController {
 
     @FXML
     private Label numberText;
-    Owner owner;
 
     @FXML
-    void initialize() throws SQLException, ClassNotFoundException {
-        DBhandler dBhandler = DBhandler.getInstance();
-        Owner currentOwner = dBhandler.getOwner(dBhandler.getUser("Alex03log", "test").getId());
+    private TableView<Pet> TablePet;
 
-        if (currentOwner != null) {
-            setOwner(currentOwner);
-        }
+    @FXML
+    private TableColumn<Pet, String> breedPetCol;
+
+    @FXML
+    private TableColumn<Pet, String> namePetCol;
+
+    Owner owner;
+    Pet pet;
+
+    @FXML
+    void initialize() {
     }
 
     public void setOwner(Owner owner) {
@@ -48,4 +53,14 @@ public class LkOwnController {
         numberText.setText("Ваш телефон: " + owner.getNumber());
         addressText.setText("Ваш адрес: " + owner.getAddress());
     }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+
+        breedPetCol.setCellValueFactory(new PropertyValueFactory<>("breed"));
+        namePetCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TablePet.getItems().addAll(pet);
+    }
+
 }

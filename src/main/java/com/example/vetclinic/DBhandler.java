@@ -1,6 +1,7 @@
 package com.example.vetclinic;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBhandler {
     private static DBhandler instance;
@@ -137,7 +138,7 @@ public class DBhandler {
 
     public Pet getPet(int ownerId) {
         Pet pet = null;
-        String select = "SELECT p.name, b.name AS breed_name " +
+        String select = "SELECT p.id, p.name, p.owner_id, b.name AS breed_name " +
                 "FROM " + Constants.PET_TABLE + " AS p " +
                 "INNER JOIN " + Constants.BREED_TABLE + " AS b ON p.breed_id = b.id " +
                 "WHERE p.owner_id = ?";
@@ -149,10 +150,12 @@ public class DBhandler {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
+                int petId = resultSet.getInt(Constants.PET_ID);
                 String petName = resultSet.getString(Constants.PET_NAME);
+                int ownId = resultSet.getInt(Constants.PET_OWNER);
                 String breedName = resultSet.getString(Constants.BREED_NAME);
 
-                pet = new Pet(petName, breedName);
+                pet = new Pet(petId, petName, ownId, breedName);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -161,4 +164,68 @@ public class DBhandler {
         return pet;
     }
 
+    public ArrayList<Pet> getPetsByOwnerId(int ownerId) {
+        ArrayList<Pet> pets = new ArrayList<>();
+
+        String select = "SELECT p.id, p.name, p.owner_id, b.name AS breed_name " +
+                "FROM " + Constants.PET_TABLE + " AS p " +
+                "INNER JOIN " + Constants.BREED_TABLE + " AS b ON p.breed_id = b.id " +
+                "WHERE p.owner_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(select);
+            preparedStatement.setInt(1, ownerId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int petId = resultSet.getInt(Constants.PET_ID);
+                String petName = resultSet.getString(Constants.PET_NAME);
+                int ownId = resultSet.getInt(Constants.PET_OWNER);
+                String breedName = resultSet.getString(Constants.BREED_NAME);
+
+                Pet pet = new Pet(petId, petName, ownId, breedName);
+                pets.add(pet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pets;
+    }
+
+    public void updatePet(Pet pet) {
+        String selectBreed = "SELECT id FROM" + Constants.BREED_TABLE +
+                " WHERE name = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(selectBreed);
+            preparedStatement.setString(1, pet.getBreed());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int brId = resultSet.getInt(Constants.BREED_ID);
+
+                String updatePet = "UPDATE " + Constants.PET_TABLE +
+                        " SET " + Constants.PET_NAME + "= ?, " + Constants.PET_OWNER +"= ?, " + Constants.PET_BREED +" = ?" +
+                        " WHERE " + Constants.PET_ID + " = ?";
+
+                try {
+                    PreparedStatement preparedStatementPet = dbConnector.prepareStatement(updatePet);
+                    preparedStatementPet.setString(1, pet.getName());
+                    preparedStatementPet.setInt(2, pet.getOwnerId());
+                    preparedStatementPet.setInt(3, brId);
+                    preparedStatementPet.setInt(4, pet.getPetId());
+
+                    preparedStatementPet.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -17,7 +17,11 @@ public class Constants {
 
     public static final String PET_TABLE = "pets";
     public static final String PET_NAME = "name";
+    public static final String PET_OWNER = "owner_id";
+    public static final String PET_ID = "id";
+    public static final String PET_BREED = "breed_id";
 
     public static final String BREED_TABLE = "breeds";
     public static final String BREED_NAME = "breed_name";
+    public static final String BREED_ID = "id";
 }

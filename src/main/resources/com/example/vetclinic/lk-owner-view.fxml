@@ -39,7 +39,7 @@
                   <Font name="Berlin Sans FB" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="ChngOwnBut" layoutX="26.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #F0FFFF;" text="Изменить данные">
+            <Button fx:id="chngOwnBut" layoutX="26.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #F0FFFF;" text="Изменить данные">
                <effect>
                   <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
                </effect>
@@ -49,22 +49,22 @@
                   <Font name="Berlin Sans FB" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="CreatePetBut" layoutX="208.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Добавить питомца">
+            <Button fx:id="createPetBut" layoutX="208.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Добавить питомца">
                <effect>
                   <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
                </effect>
             </Button>
-            <Button fx:id="EditPetBut" layoutX="208.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Изменить питомца">
+            <Button fx:id="editPetBut" layoutX="208.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Изменить питомца">
                <effect>
                   <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
                </effect>
             </Button>
-            <Button fx:id="DeletePetBut" layoutX="208.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Удалить питомца">
+            <Button fx:id="deletePetBut" layoutX="208.0" layoutY="182.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Удалить питомца">
                <effect>
                   <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
                </effect>
             </Button>
-            <TableView fx:id="TablePet" layoutX="367.0" layoutY="77.0" prefHeight="157.0" prefWidth="307.0">
+            <TableView fx:id="tablePet" layoutX="367.0" layoutY="77.0" prefHeight="157.0" prefWidth="307.0">
               <columns>
                 <TableColumn fx:id="namePetCol" prefWidth="152.66664123535156" text="Имя" />
                 <TableColumn fx:id="breedPetCol" prefWidth="152.66668701171875" text="Порода" />

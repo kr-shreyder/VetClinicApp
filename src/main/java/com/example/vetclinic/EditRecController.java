@@ -1,21 +1,11 @@
+/*
 package com.example.vetclinic;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class EditPetController extends Controller {
-
-    @FXML
-    private TextField breedPetText;
-
-    @FXML
-    private TextField namePetText;
-
-    @FXML
-    private Button savePetBut1;
+public class EditRecController {
 
     private Pet pet;
     LkOwnController lkOwnController;
@@ -54,3 +44,4 @@ public class EditPetController extends Controller {
         this.lkOwnController = lkOwnController;
     }
 }
+*/

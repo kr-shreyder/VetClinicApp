@@ -13,6 +13,12 @@ public class Pet {
         this.breed = breed;
     }
 
+    public Pet(String name, int ownerId, String breed) {
+        this.name = name;
+        this.ownerId = ownerId;
+        this.breed = breed;
+    }
+
     public int getOwnerId() {
         return ownerId;
     }
@@ -25,7 +31,7 @@ public class Pet {
         return id;
     }
 
-    public void setpetId(int id) {
+    public void setPetId(int id) {
         this.id = id;
     }
 

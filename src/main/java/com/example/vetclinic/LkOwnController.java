@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LkOwnController extends Controller{
+public class LkOwnController extends Controller {
     @FXML
     private Label addressText;
 
@@ -48,9 +48,41 @@ public class LkOwnController extends Controller{
     @FXML
     void initialize() {
         editPetBut.setOnAction(event -> {
-            editPetBut.getScene().getWindow().hide();
-            newWin("edit-pet-view.fxml");
+            Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
+            EditPetController editPetController = (EditPetController) newWin("edit-pet-view.fxml");
+            editPetController.setPet(selectedPet);
+            editPetController.setParentController(this);
         });
+
+        createPetBut.setOnAction(event -> {
+            CreatePetController createPetController = (CreatePetController) newWin("create-pet-view.fxml");
+            try {
+                createPetController.setPetOwner(this.owner);
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            createPetController.setParentController(this);
+        });
+
+        deletePetBut.setOnAction(event -> {
+            try {
+                Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
+                DBhandler.getInstance().deletePet(selectedPet.getPetId());
+                this.updateTableData();
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
+/*
+        chngOwnBut.setOnAction(event -> {
+            EditUserController editOwnController = (EditUserController) newWin("edit-user-view.fxml");
+            try {
+                editOwnController.setUser(DBhandler.getInstance().getUser());
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            editOwnController.setParentController(this);
+        });*/
     }
 
     public void setOwner(Owner owner) throws SQLException, ClassNotFoundException {
@@ -79,5 +111,15 @@ public class LkOwnController extends Controller{
         namePetCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         tablePet.getItems().addAll(pets);
+    }
+
+    public void updateTableData() throws SQLException, ClassNotFoundException {
+        ArrayList<Pet> pets = DBhandler.getInstance().getPetsByOwnerId(this.owner.getId());
+
+        tablePet.getItems().clear();
+
+        tablePet.getItems().addAll(pets);
+
+        tablePet.refresh();
     }
 }

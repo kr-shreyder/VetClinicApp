@@ -111,6 +111,33 @@ public class DBhandler {
         return user;
     }
 
+    public User getUserByOwnerId(int ownerId) {
+        User user = null;
+        String select = "SELECT * FROM " + Constants.USER_TABLE +
+                " WHERE " + Constants.USER_ID + " = (SELECT " + Constants.OWNER_USER_ID +
+                " FROM " + Constants.OWNER_TABLE +
+                " WHERE " + Constants.OWNER_ID + " = ?)";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(select);
+            preparedStatement.setInt(1, ownerId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt(Constants.USER_ID);
+                String login = resultSet.getString(Constants.USER_LOGIN);
+                String password = resultSet.getString(Constants.USER_PASSWORD);
+                int roleId = resultSet.getInt(Constants.USER_ROLE_ID);
+                user = new User(id, login, password, roleId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
     public Owner getOwner(int userId) {
         Owner owner = null;
         String select = "SELECT * FROM " + Constants.OWNER_TABLE + " WHERE user_id = ?";
@@ -134,6 +161,31 @@ public class DBhandler {
         }
 
         return owner;
+    }
+
+    public Doctor getDoctor(int userId) {
+        Doctor doctor = null;
+        String select = "SELECT * FROM " + Constants.DOCTOR_TABLE + " WHERE " + Constants.DOCTOR_USER_ID + " = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(select);
+            preparedStatement.setInt(1, userId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt(Constants.DOCTOR_ID);
+                String name = resultSet.getString(Constants.DOCTOR_NAME);
+                String phoneNumber = resultSet.getString(Constants.DOCTOR_PHONE);
+                String address = resultSet.getString(Constants.DOCTOR_ADDRESS);
+
+                doctor = new Doctor(id, userId, name, phoneNumber, address);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return doctor;
     }
 
     public Pet getPet(int ownerId) {
@@ -195,7 +247,7 @@ public class DBhandler {
     }
 
     public void updatePet(Pet pet) {
-        String selectBreed = "SELECT id FROM" + Constants.BREED_TABLE +
+        String selectBreed = "SELECT id FROM " + Constants.BREED_TABLE +
                 " WHERE name = ?";
 
         try {
@@ -228,4 +280,57 @@ public class DBhandler {
             e.printStackTrace();
         }
     }
+
+    public Pet createPet(Pet pet) {
+        String selectBreed = "SELECT id FROM " + Constants.BREED_TABLE +
+                " WHERE name = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(selectBreed);
+            preparedStatement.setString(1, pet.getBreed());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int breedId = resultSet.getInt(Constants.BREED_ID);
+
+                String insertPet = "INSERT INTO " + Constants.PET_TABLE + "(" +
+                        Constants.PET_NAME + "," +
+                        Constants.PET_OWNER + "," +
+                        Constants.PET_BREED + ")" +
+                        "VALUES(?,?,?);";
+
+                preparedStatement = dbConnector.prepareStatement(insertPet, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setString(1, pet.getName());
+                preparedStatement.setInt(2, pet.getOwnerId());
+                preparedStatement.setInt(3, breedId);
+
+                preparedStatement.execute();
+
+                ResultSet generatedId = preparedStatement.getGeneratedKeys();
+                generatedId.next();
+
+                int id = generatedId.getInt(1);
+                pet.setPetId(id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pet;
+    }
+
+    public void deletePet(int petId) {
+        String deleteQuery = "DELETE FROM " + Constants.PET_TABLE +
+                " WHERE " + Constants.PET_ID + " = ?";
+
+        try {
+            PreparedStatement preparedStatement = dbConnector.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, petId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

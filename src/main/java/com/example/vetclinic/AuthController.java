@@ -56,6 +56,13 @@ public class AuthController extends Controller {
             LkOwnController lkOwnController = (LkOwnController) newWin("lk-owner-view.fxml");
             lkOwnController.setOwner(owner);
         }
+        if (user != null && user.getRoleId() == 2) {
+            Doctor doctor = DBhandler.getInstance().getDoctor(user.getId());
+            //System.out.println(pet.getName());
+            logButton.getScene().getWindow().hide();
+            LkDocController lkDocController = (LkDocController) newWin("lk-doctor-view.fxml");
+            lkDocController.setDoctor(doctor);
+        }
         else {
             Shake logAmimation = new Shake(loginField);
             Shake passAnimation = new Shake(passwField);

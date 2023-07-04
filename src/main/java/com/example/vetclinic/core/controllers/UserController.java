@@ -5,8 +5,8 @@ import com.example.vetclinic.core.interfaces.EditUserController;
 import com.example.vetclinic.core.models.Doctor;
 import com.example.vetclinic.core.models.Owner;
 import com.example.vetclinic.core.models.User;
-import com.example.vetclinic.db.DBhandler;
 import com.example.vetclinic.presentation.AuthControllerImpl;
+import com.example.vetclinic.presentation.Service;
 
 import java.sql.SQLException;
 
@@ -37,25 +37,13 @@ public class UserController extends BaseController{
         }
     }
 
-    public void registration() {
-
-    }
-
-    public void get() {
-
-    }
-
     public void update(User user, String oldPassw, String newLogin, String newPassw) {
-        oldPassw = com.example.vetclinic.presentation.BaseController.hashPass(oldPassw);
+        oldPassw = Service.hashPass(oldPassw);
         if (oldPassw.equals(user.getPassword())) {
             user.setLogin(newLogin);
             user.setPassword(newPassw);
             dbHandler.updateUser(user);
             editUserController.exit();
         }
-    }
-
-    public void delete() {
-
     }
 }

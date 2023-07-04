@@ -1,9 +1,5 @@
 package com.example.vetclinic.config;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 public class Configs {
     public static String dbHost = "std-mysql.ist.mospolytech.ru";
     public static String dbPort = "3306";

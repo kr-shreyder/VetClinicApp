@@ -1,15 +1,13 @@
 package com.example.vetclinic.presentation;
 
 import com.example.vetclinic.core.controllers.ReceptionController;
+import com.example.vetclinic.core.interfaces.LkDocController;
 import com.example.vetclinic.db.DBhandler;
 import com.example.vetclinic.core.models.Doctor;
 import com.example.vetclinic.core.models.Reception;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
@@ -18,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class LkDocControllerImpl extends BaseController{
+public class LkDocControllerImpl extends BaseController implements LkDocController {
     @FXML
     private Label addressText;
 

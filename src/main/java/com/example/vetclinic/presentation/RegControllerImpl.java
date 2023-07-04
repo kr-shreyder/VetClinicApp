@@ -2,13 +2,8 @@ package com.example.vetclinic.presentation;
 
 import com.example.vetclinic.core.controllers.OwnerController;
 import com.example.vetclinic.core.interfaces.RegController;
-import com.example.vetclinic.db.DBhandler;
-import com.example.vetclinic.core.models.Owner;
-import com.example.vetclinic.core.models.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.SQLException;
 

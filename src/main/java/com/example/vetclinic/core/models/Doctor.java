@@ -15,13 +15,6 @@ public class Doctor {
         this.address = address;
     }
 
-    public Doctor(int user_id, String name, String number, String address) {
-        this.user_id = user_id;
-        this.name = name;
-        this.number = number;
-        this.address = address;
-    }
-
     public int getId() {
         return id;
     }

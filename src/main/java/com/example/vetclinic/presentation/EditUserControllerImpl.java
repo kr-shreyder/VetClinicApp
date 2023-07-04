@@ -5,6 +5,7 @@ import com.example.vetclinic.core.interfaces.EditUserController;
 import com.example.vetclinic.core.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
@@ -14,10 +15,10 @@ public class EditUserControllerImpl extends BaseController implements EditUserCo
     private TextField newLogin;
 
     @FXML
-    private TextField newPassword;
+    private PasswordField newPassword;
 
     @FXML
-    private TextField oldPassword;
+    private PasswordField oldPassword;
 
     @FXML
     private Button saveUserBut;

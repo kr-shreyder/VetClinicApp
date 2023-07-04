@@ -8,9 +8,7 @@ import com.example.vetclinic.core.interfaces.AuthController;
 import com.example.vetclinic.core.models.Doctor;
 import com.example.vetclinic.core.models.Owner;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class AuthControllerImpl extends BaseController implements AuthController {
 

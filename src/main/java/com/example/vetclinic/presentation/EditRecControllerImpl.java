@@ -4,9 +4,7 @@ import com.example.vetclinic.core.controllers.ReceptionController;
 import com.example.vetclinic.core.interfaces.EditRecController;
 import com.example.vetclinic.core.models.Reception;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.Date;
 import java.sql.SQLException;

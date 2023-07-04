@@ -30,10 +30,6 @@ public class PetController extends BaseController{
         createPetController.exit();
     }
 
-    public void get() {
-
-    }
-
     public void update(Pet pet, String name, String breedName) throws SQLException, ClassNotFoundException {
         pet.setName(name);
         pet.setBreed(breedName);

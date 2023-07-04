@@ -3,7 +3,7 @@ package com.example.vetclinic.db;
 import com.example.vetclinic.config.Configs;
 import com.example.vetclinic.config.Constants;
 import com.example.vetclinic.core.models.*;
-import com.example.vetclinic.presentation.BaseController;
+import com.example.vetclinic.presentation.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class DBhandler {
     }
 
     public User createUser(User user) {
-        String password = BaseController.hashPass(user.getPassword());
+        String password = Service.hashPass(user.getPassword());
         String insertUser = "INSERT INTO " + Constants.USER_TABLE + "(" +
                 Constants.USER_LOGIN + "," +
                 Constants.USER_PASSWORD + "," +
@@ -91,7 +91,7 @@ public class DBhandler {
 
     public User getUser(String login, String password) {
         User user = null;
-        password = BaseController.hashPass(password);
+        password = Service.hashPass(password);
         String select = "SELECT * FROM " + Constants.USER_TABLE +
                 " WHERE " + Constants.USER_LOGIN + "=? AND " + Constants.USER_PASSWORD + "=?";
 
@@ -149,8 +149,7 @@ public class DBhandler {
             PreparedStatement preparedStatement = dbConnector.prepareStatement(updateQuery);
             preparedStatement.setString(1, user.getLogin());
 
-            // Хеширование пароля с использованием вашего метода HashPassword
-            String hashedPassword = BaseController.hashPass(user.getPassword());
+            String hashedPassword = Service.hashPass(user.getPassword());
             preparedStatement.setString(2, hashedPassword);
 
             preparedStatement.setInt(3, user.getId());
@@ -481,14 +480,12 @@ public class DBhandler {
 
             preparedStatement.executeUpdate();
 
-            // Удаляем существующие записи о болезнях, связанные с приемом
             String deleteReceptionDiseases = "DELETE FROM " + Constants.RECEPTION_DISEASES_TABLE +
                     " WHERE " + Constants.RECEPTION_DISEASES_REC + " = ?";
             preparedStatement = dbConnector.prepareStatement(deleteReceptionDiseases);
             preparedStatement.setInt(1, reception.getId());
             preparedStatement.executeUpdate();
 
-            // Вставляем новые записи о болезнях
             ArrayList<String> diseases = reception.getDiseaseName();
 
             if (diseases != null && !diseases.isEmpty()) {

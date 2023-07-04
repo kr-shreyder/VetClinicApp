@@ -1,4 +1,4 @@
-package com.example.vetclinic;
+package com.example.vetclinic.presentation;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Controller {
-    public Controller newWin (String window) {
+public class BaseController {
+    public BaseController newWin (String window) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
+        loader.setLocation(getClass().getResource("/com/example/vetclinic/" + window));
 
         try {
             loader.load();

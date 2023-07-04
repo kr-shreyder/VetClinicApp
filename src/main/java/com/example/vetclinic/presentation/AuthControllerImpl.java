@@ -1,14 +1,18 @@
-package com.example.vetclinic;
+package com.example.vetclinic.presentation;
 
 import java.sql.SQLException;
 
 import animations.Shake;
+import com.example.vetclinic.core.controllers.UserController;
+import com.example.vetclinic.core.interfaces.AuthController;
+import com.example.vetclinic.core.models.Doctor;
+import com.example.vetclinic.core.models.Owner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class AuthController extends Controller {
+public class AuthControllerImpl extends BaseController implements AuthController {
 
     @FXML
     private TextField loginField;
@@ -46,28 +50,26 @@ public class AuthController extends Controller {
     }
 
     private void logUser(String logText, String logPassword) throws SQLException, ClassNotFoundException {
-        DBhandler dbHandler = DBhandler.getInstance();
-        User user = dbHandler.getUser(logText, logPassword);
+        UserController userController = new UserController(this);
+        userController.login(logText, logPassword);
+    }
 
-        if (user != null && user.getRoleId() == 3) {
-            Owner owner = DBhandler.getInstance().getOwner(user.getId());
-            //System.out.println(pet.getName());
-            logButton.getScene().getWindow().hide();
-            LkOwnController lkOwnController = (LkOwnController) newWin("lk-owner-view.fxml");
-            lkOwnController.setOwner(owner);
-        }
-        if (user != null && user.getRoleId() == 2) {
-            Doctor doctor = DBhandler.getInstance().getDoctor(user.getId());
-            //System.out.println(pet.getName());
-            logButton.getScene().getWindow().hide();
-            LkDocController lkDocController = (LkDocController) newWin("lk-doctor-view.fxml");
-            lkDocController.setDoctor(doctor);
-        }
-        else {
-            Shake logAmimation = new Shake(loginField);
-            Shake passAnimation = new Shake(passwField);
-            logAmimation.play();
-            passAnimation.play();
-        }
+    public void openLkOwnWindow (Owner owner) throws SQLException, ClassNotFoundException {
+        logButton.getScene().getWindow().hide();
+        LkOwnControllerImpl lkOwnController = (LkOwnControllerImpl) newWin("lk-owner-view.fxml");
+        lkOwnController.setOwner(owner);
+    }
+
+    public void openLkDocWindow (Doctor doctor) throws SQLException, ClassNotFoundException {
+        logButton.getScene().getWindow().hide();
+        LkDocControllerImpl lkDocController = (LkDocControllerImpl) newWin("lk-doctor-view.fxml");
+        lkDocController.setDoctor(doctor);
+    }
+
+    public void enteredWrongData () {
+        Shake logAmimation = new Shake(loginField);
+        Shake passAnimation = new Shake(passwField);
+        logAmimation.play();
+        passAnimation.play();
     }
 }

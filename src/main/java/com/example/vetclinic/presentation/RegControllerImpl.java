@@ -1,5 +1,10 @@
-package com.example.vetclinic;
+package com.example.vetclinic.presentation;
 
+import com.example.vetclinic.core.controllers.OwnerController;
+import com.example.vetclinic.core.interfaces.RegController;
+import com.example.vetclinic.db.DBhandler;
+import com.example.vetclinic.core.models.Owner;
+import com.example.vetclinic.core.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -7,7 +12,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class RegController {
+public class RegControllerImpl extends BaseController implements RegController {
     @FXML
     private TextField loginField;
 
@@ -38,24 +43,13 @@ public class RegController {
     }
 
     private void regNewUser() throws SQLException, ClassNotFoundException {
-        DBhandler dbHandler = DBhandler.getInstance();
-        /*String name = regName.getText();
+        String name = regName.getText();
         String login = loginField.getText();
         String password = passwField.getText();
         String phoneNumber = regNumber.getText();
-        String address = regAddress.getText();*/
+        String address = regAddress.getText();
 
-        String name = "Кристина";
-        String login = "Login";
-        String password = "Test";
-        String phoneNumber = "89119559170";
-        String address = "СПБ";
-
-        User user = new User(login, password);
-        user = dbHandler.createUser(user);
-        System.out.println(user.getId());
-
-        Owner owner = new Owner(user.getId(), name, phoneNumber, address);
-        dbHandler.createOwner(owner);
+        OwnerController ownerController = new OwnerController(this);
+        ownerController.create(login, password, name, phoneNumber, address);
     }
 }

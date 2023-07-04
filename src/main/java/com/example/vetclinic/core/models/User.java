@@ -1,4 +1,4 @@
-package com.example.vetclinic;
+package com.example.vetclinic.core.models;
 
 public class User {
     private int id;

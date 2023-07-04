@@ -1,12 +1,16 @@
-package com.example.vetclinic;
+package com.example.vetclinic.presentation;
 
+import com.example.vetclinic.core.controllers.PetController;
+import com.example.vetclinic.core.interfaces.CreatePetController;
+import com.example.vetclinic.core.models.Owner;
+import com.example.vetclinic.core.models.Pet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class CreatePetController extends Controller {
+public class CreatePetControllerImpl extends BaseController implements CreatePetController {
     @FXML
     private TextField breedPetText1;
 
@@ -17,7 +21,7 @@ public class CreatePetController extends Controller {
     private Button savePetBut1;
 
     Pet pet;
-    LkOwnController lkOwnController;
+    LkOwnControllerImpl lkOwnController;
     Owner owner;
 
     @FXML
@@ -37,18 +41,20 @@ public class CreatePetController extends Controller {
     }
 
     private void createPetSave(String name, String nameBreed) throws SQLException, ClassNotFoundException {
-        DBhandler dbHandler = DBhandler.getInstance();
-        Pet pet = new Pet(name, this.owner.getId(), nameBreed);
-        dbHandler.createPet(pet);
-        lkOwnController.updateTableData();
-        savePetBut1.getScene().getWindow().hide();
+        PetController petController = new PetController(this);
+        petController.create(name, this.owner.getId(), nameBreed);
     }
 
-    public void setParentController(LkOwnController lkOwnController) {
+    public void setParentController(LkOwnControllerImpl lkOwnController) {
         this.lkOwnController = lkOwnController;
     }
 
     public void setPetOwner(Owner owner) throws SQLException, ClassNotFoundException {
         this.owner = owner;
+    }
+
+    public void exit() throws SQLException, ClassNotFoundException {
+        lkOwnController.updateTableData();
+        savePetBut1.getScene().getWindow().hide();
     }
 }

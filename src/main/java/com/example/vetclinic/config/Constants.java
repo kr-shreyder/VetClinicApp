@@ -1,4 +1,4 @@
-package com.example.vetclinic;
+package com.example.vetclinic.config;
 
 public class Constants {
     public static final String USER_TABLE = "users";
@@ -32,4 +32,16 @@ public class Constants {
     public static final String BREED_ID = "id";
 
     public static final String RECEPTION_ID = "id";
+    public static final String RECEPTION_TABLE = "receptions";
+    public static final String RECEPTION_DOCTOR_ID = "doctor_id";
+    public static final String RECEPTION_OWNER_ID = "owner_id";
+    public static final String RECEPTION_PET_ID = "pet_id";
+    public static final String RECEPTION_DATE = "in_date";
+    public static final String RECEPTION_TIME = "in_time";
+
+    public static final String RECEPTION_DISEASES_TABLE = "reception_diseases";
+    public static final String RECEPTION_DISEASES_REC = "reception_id";
+    public static final String RECEPTION_DISEASES_DIS = "disease_id";
+
+    public static final String DISEASE_TABLE = "diseases";
 }

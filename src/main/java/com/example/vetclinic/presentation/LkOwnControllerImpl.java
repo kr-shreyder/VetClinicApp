@@ -1,5 +1,10 @@
-package com.example.vetclinic;
+package com.example.vetclinic.presentation;
 
+import com.example.vetclinic.core.controllers.PetController;
+import com.example.vetclinic.core.interfaces.LkOwnController;
+import com.example.vetclinic.db.DBhandler;
+import com.example.vetclinic.core.models.Owner;
+import com.example.vetclinic.core.models.Pet;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -8,9 +13,15 @@ import javafx.scene.image.ImageView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LkOwnController extends Controller {
+public class LkOwnControllerImpl extends BaseController implements LkOwnController {
     @FXML
     private Label addressText;
+
+    @FXML
+    private Label nameText;
+
+    @FXML
+    private Label numberText;
 
     @FXML
     private Button chngOwnBut;
@@ -36,12 +47,6 @@ public class LkOwnController extends Controller {
     @FXML
     private TableColumn<Pet, String> namePetCol;
 
-    @FXML
-    private Label nameText;
-
-    @FXML
-    private Label numberText;
-
     Owner owner;
     Pet pet;
 
@@ -49,13 +54,13 @@ public class LkOwnController extends Controller {
     void initialize() {
         editPetBut.setOnAction(event -> {
             Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
-            EditPetController editPetController = (EditPetController) newWin("edit-pet-view.fxml");
+            EditPetControllerImpl editPetController = (EditPetControllerImpl) newWin("edit-pet-view.fxml");
             editPetController.setPet(selectedPet);
             editPetController.setParentController(this);
         });
 
         createPetBut.setOnAction(event -> {
-            CreatePetController createPetController = (CreatePetController) newWin("create-pet-view.fxml");
+            CreatePetControllerImpl createPetController = (CreatePetControllerImpl) newWin("create-pet-view.fxml");
             try {
                 createPetController.setPetOwner(this.owner);
             } catch (SQLException | ClassNotFoundException e) {
@@ -66,23 +71,16 @@ public class LkOwnController extends Controller {
 
         deletePetBut.setOnAction(event -> {
             try {
-                Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
-                DBhandler.getInstance().deletePet(selectedPet.getPetId());
-                this.updateTableData();
+                PetController petController = new PetController(this);
+                petController.delete(getSelectedPet());
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         });
-/*
+
         chngOwnBut.setOnAction(event -> {
-            EditUserController editOwnController = (EditUserController) newWin("edit-user-view.fxml");
-            try {
-                editOwnController.setUser(DBhandler.getInstance().getUser());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            editOwnController.setParentController(this);
-        });*/
+            openEditOwnWindow();
+        });
     }
 
     public void setOwner(Owner owner) throws SQLException, ClassNotFoundException {
@@ -121,5 +119,18 @@ public class LkOwnController extends Controller {
         tablePet.getItems().addAll(pets);
 
         tablePet.refresh();
+    }
+
+    public void openEditOwnWindow () {
+        EditUserControllerImpl editOwnController = (EditUserControllerImpl) newWin("edit-user-view.fxml");
+        try {
+            editOwnController.setUser(DBhandler.getInstance().getUserById(this.owner.getUserId()));
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Pet getSelectedPet() {
+        return tablePet.getSelectionModel().getSelectedItem();
     }
 }

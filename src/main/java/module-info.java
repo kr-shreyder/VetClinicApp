@@ -9,4 +9,12 @@ module com.example.vetclinic {
 
     opens com.example.vetclinic to javafx.fxml;
     exports com.example.vetclinic;
+    exports com.example.vetclinic.core.models;
+    opens com.example.vetclinic.core.models to javafx.fxml;
+    exports com.example.vetclinic.presentation;
+    opens com.example.vetclinic.presentation to javafx.fxml;
+    exports com.example.vetclinic.db;
+    opens com.example.vetclinic.db to javafx.fxml;
+    exports com.example.vetclinic.config;
+    opens com.example.vetclinic.config to javafx.fxml;
 }

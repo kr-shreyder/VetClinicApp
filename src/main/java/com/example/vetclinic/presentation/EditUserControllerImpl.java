@@ -1,12 +1,15 @@
-package com.example.vetclinic;
+package com.example.vetclinic.presentation;
 
+import com.example.vetclinic.core.controllers.UserController;
+import com.example.vetclinic.core.interfaces.EditUserController;
+import com.example.vetclinic.core.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class EditUserController extends Controller {
+public class EditUserControllerImpl extends BaseController implements EditUserController {
     @FXML
     private TextField newLogin;
 
@@ -18,12 +21,10 @@ public class EditUserController extends Controller {
 
     @FXML
     private Button saveUserBut;
-
-    LkOwnController lkOwnController;
     User user;
 
 
-    /*@FXML
+    @FXML
     void initialize() {
         saveUserBut.setOnAction(event -> {
             String oldPasswText = oldPassword.getText().trim();
@@ -32,27 +33,24 @@ public class EditUserController extends Controller {
 
             if (!oldPasswText.equals("") && !newLoginText.equals("") && !newPasswText.equals("")) {
                 try {
-                    editUser(nameText, breedText);
+                    editUser(oldPasswText, newLoginText, newPasswText);
                 } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
-    }*/
+    }
 
     private void editUser(String oldPassw, String newLogin, String newPassw) throws SQLException, ClassNotFoundException {
-        DBhandler dbHandler = DBhandler.getInstance();
-        user.setLogin(newLogin);
-        user.setPassword(newPassw);
-        lkOwnController.updateTableData();
-        saveUserBut.getScene().getWindow().hide();
+        UserController UserController = new UserController(this);
+        UserController.update(user, oldPassw, newLogin, newPassw);
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public void setParentController(LkOwnController lkOwnController) {
-        this.lkOwnController = lkOwnController;
+    public void exit() {
+        saveUserBut.getScene().getWindow().hide();
     }
 }

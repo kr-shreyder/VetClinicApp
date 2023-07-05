@@ -37,8 +37,6 @@ public class AuthControllerImpl extends BaseController implements AuthController
                     throw new RuntimeException(e);
                 }
             }
-            else
-                System.out.println("Логин и/или пароль не введены!");
         });
 
         logButton.setOnAction(event -> {

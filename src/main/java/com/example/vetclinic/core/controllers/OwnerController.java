@@ -2,14 +2,14 @@ package com.example.vetclinic.core.controllers;
 
 import com.example.vetclinic.core.models.Owner;
 import com.example.vetclinic.core.models.User;
-import com.example.vetclinic.presentation.RegControllerImpl;
+import com.example.vetclinic.presentation.RegPresenter;
 
 import java.sql.SQLException;
 
 public class OwnerController extends BaseController {
-    RegControllerImpl regController;
+    RegPresenter regController;
 
-    public OwnerController(RegControllerImpl regController) throws SQLException, ClassNotFoundException {
+    public OwnerController(RegPresenter regController) throws SQLException, ClassNotFoundException {
         super();
         this.regController = regController;
     }

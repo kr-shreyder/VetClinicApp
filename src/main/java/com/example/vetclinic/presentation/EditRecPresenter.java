@@ -12,7 +12,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class EditRecControllerImpl extends BaseController implements EditRecController {
+public class EditRecPresenter extends BasePresenter implements EditRecController {
 
     @FXML
     private TextField dateField;
@@ -31,7 +31,7 @@ public class EditRecControllerImpl extends BaseController implements EditRecCont
 
     @FXML
     private TextField timeField;
-    LkDocControllerImpl lkDocController;
+    LkDocPresenter lkDocController;
     Reception reception;
 
 
@@ -66,7 +66,7 @@ public class EditRecControllerImpl extends BaseController implements EditRecCont
         this.reception = reception;
     }
 
-    public void setParentController(LkDocControllerImpl lkDocController) {
+    public void setParentController(LkDocPresenter lkDocController) {
         this.lkDocController = lkDocController;
     }
 

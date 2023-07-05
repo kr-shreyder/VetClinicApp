@@ -34,7 +34,7 @@ public class DBhandler {
     }
 
     public User createUser(User user) {
-        String password = Service.hashPass(user.getPassword());
+        String password = Service.hashPassword(user.getPassword());
         String insertUser = "INSERT INTO " + Constants.USER_TABLE + "(" +
                 Constants.USER_LOGIN + "," +
                 Constants.USER_PASSWORD + "," +
@@ -91,7 +91,7 @@ public class DBhandler {
 
     public User getUser(String login, String password) {
         User user = null;
-        password = Service.hashPass(password);
+        password = Service.hashPassword(password);
         String select = "SELECT * FROM " + Constants.USER_TABLE +
                 " WHERE " + Constants.USER_LOGIN + "=? AND " + Constants.USER_PASSWORD + "=?";
 
@@ -149,7 +149,7 @@ public class DBhandler {
             PreparedStatement preparedStatement = dbConnector.prepareStatement(updateQuery);
             preparedStatement.setString(1, user.getLogin());
 
-            String hashedPassword = Service.hashPass(user.getPassword());
+            String hashedPassword = Service.hashPassword(user.getPassword());
             preparedStatement.setString(2, hashedPassword);
 
             preparedStatement.setInt(3, user.getId());

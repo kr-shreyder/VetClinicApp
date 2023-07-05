@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BaseController {
-    public BaseController newWin (String window) {
+public class BasePresenter {
+    public BasePresenter newWin (String window) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/com/example/vetclinic/" + window));
 

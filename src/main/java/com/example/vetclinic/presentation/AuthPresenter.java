@@ -10,7 +10,7 @@ import com.example.vetclinic.core.models.Owner;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class AuthControllerImpl extends BaseController implements AuthController {
+public class AuthPresenter extends BasePresenter implements AuthController {
 
     @FXML
     private TextField loginField;
@@ -52,13 +52,13 @@ public class AuthControllerImpl extends BaseController implements AuthController
 
     public void openLkOwnWindow (Owner owner) throws SQLException, ClassNotFoundException {
         logButton.getScene().getWindow().hide();
-        LkOwnControllerImpl lkOwnController = (LkOwnControllerImpl) newWin("lk-owner-view.fxml");
+        LkOwnPresenter lkOwnController = (LkOwnPresenter) newWin("lk-owner-view.fxml");
         lkOwnController.setOwner(owner);
     }
 
     public void openLkDocWindow (Doctor doctor) throws SQLException, ClassNotFoundException {
         logButton.getScene().getWindow().hide();
-        LkDocControllerImpl lkDocController = (LkDocControllerImpl) newWin("lk-doctor-view.fxml");
+        LkDocPresenter lkDocController = (LkDocPresenter) newWin("lk-doctor-view.fxml");
         lkDocController.setDoctor(doctor);
     }
 

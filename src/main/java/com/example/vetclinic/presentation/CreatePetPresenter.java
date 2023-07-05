@@ -3,14 +3,13 @@ package com.example.vetclinic.presentation;
 import com.example.vetclinic.core.controllers.PetController;
 import com.example.vetclinic.core.interfaces.CreatePetController;
 import com.example.vetclinic.core.models.Owner;
-import com.example.vetclinic.core.models.Pet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class CreatePetControllerImpl extends BaseController implements CreatePetController {
+public class CreatePetPresenter extends BasePresenter implements CreatePetController {
     @FXML
     private TextField breedPetText1;
 
@@ -20,7 +19,7 @@ public class CreatePetControllerImpl extends BaseController implements CreatePet
     @FXML
     private Button savePetBut1;
 
-    LkOwnControllerImpl lkOwnController;
+    LkOwnPresenter lkOwnController;
     Owner owner;
 
     @FXML
@@ -44,7 +43,7 @@ public class CreatePetControllerImpl extends BaseController implements CreatePet
         petController.create(name, this.owner.getId(), nameBreed);
     }
 
-    public void setParentController(LkOwnControllerImpl lkOwnController) {
+    public void setParentController(LkOwnPresenter lkOwnController) {
         this.lkOwnController = lkOwnController;
     }
 

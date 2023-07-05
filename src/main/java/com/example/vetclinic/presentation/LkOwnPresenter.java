@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LkOwnControllerImpl extends BaseController implements LkOwnController {
+public class LkOwnPresenter extends BasePresenter implements LkOwnController {
     @FXML
     private Label addressText;
 
@@ -52,21 +52,21 @@ public class LkOwnControllerImpl extends BaseController implements LkOwnControll
 
     @FXML
     void initialize() {
-        editPetBut.setOnAction(event -> {
-            Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
-            EditPetControllerImpl editPetController = (EditPetControllerImpl) newWin("edit-pet-view.fxml");
-            editPetController.setPet(selectedPet);
-            editPetController.setParentController(this);
-        });
-
         createPetBut.setOnAction(event -> {
-            CreatePetControllerImpl createPetController = (CreatePetControllerImpl) newWin("create-pet-view.fxml");
+            CreatePetPresenter createPetController = (CreatePetPresenter) newWin("create-pet-view.fxml");
             try {
                 createPetController.setPetOwner(this.owner);
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             createPetController.setParentController(this);
+        });
+
+        editPetBut.setOnAction(event -> {
+            Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
+            EditPetPresenter editPetController = (EditPetPresenter) newWin("edit-pet-view.fxml");
+            editPetController.setPet(selectedPet);
+            editPetController.setParentController(this);
         });
 
         deletePetBut.setOnAction(event -> {
@@ -122,7 +122,7 @@ public class LkOwnControllerImpl extends BaseController implements LkOwnControll
     }
 
     public void openEditOwnWindow () {
-        EditUserControllerImpl editOwnController = (EditUserControllerImpl) newWin("edit-user-view.fxml");
+        EditUserPresenter editOwnController = (EditUserPresenter) newWin("edit-user-view.fxml");
         try {
             editOwnController.setUser(DBhandler.getConnect().getUserById(this.owner.getUserId()));
         } catch (SQLException | ClassNotFoundException e) {

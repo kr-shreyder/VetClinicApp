@@ -5,7 +5,7 @@ import com.example.vetclinic.core.interfaces.EditUserController;
 import com.example.vetclinic.core.models.Doctor;
 import com.example.vetclinic.core.models.Owner;
 import com.example.vetclinic.core.models.User;
-import com.example.vetclinic.presentation.AuthControllerImpl;
+import com.example.vetclinic.presentation.AuthPresenter;
 import com.example.vetclinic.presentation.Service;
 
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class UserController extends BaseController {
     AuthController authController;
     EditUserController editUserController;
-    public UserController (AuthControllerImpl authController) throws SQLException, ClassNotFoundException {
+    public UserController (AuthPresenter authController) throws SQLException, ClassNotFoundException {
         super();
         this.authController = authController;
     }
@@ -38,7 +38,7 @@ public class UserController extends BaseController {
     }
 
     public void update(User user, String oldPassw, String newLogin, String newPassw) {
-        oldPassw = Service.hashPass(oldPassw);
+        oldPassw = Service.hashPassword(oldPassw);
         if (oldPassw.equals(user.getPassword())) {
             user.setLogin(newLogin);
             user.setPassword(newPassw);

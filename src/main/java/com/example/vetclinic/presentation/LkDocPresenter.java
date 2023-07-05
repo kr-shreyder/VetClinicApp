@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class LkDocControllerImpl extends BaseController implements LkDocController {
+public class LkDocPresenter extends BasePresenter implements LkDocController {
     @FXML
     private Label addressText;
 
@@ -65,7 +65,7 @@ public class LkDocControllerImpl extends BaseController implements LkDocControll
     @FXML
     void initialize() {
         createRecBut.setOnAction(event -> {
-            CreateRecControllerImpl createRecController = (CreateRecControllerImpl) newWin("create-rec-view.fxml");
+            CreateRecPresenter createRecController = (CreateRecPresenter) newWin("create-rec-view.fxml");
             try {
                 createRecController.setDoc(this.doctor);
             } catch (SQLException | ClassNotFoundException e) {
@@ -76,7 +76,7 @@ public class LkDocControllerImpl extends BaseController implements LkDocControll
 
         editRecBut.setOnAction(event -> {
             Reception selectedRec = tableRec.getSelectionModel().getSelectedItem();
-            EditRecControllerImpl editRecController = (EditRecControllerImpl) newWin("edit-rec-view.fxml");
+            EditRecPresenter editRecController = (EditRecPresenter) newWin("edit-rec-view.fxml");
             editRecController.setRec(selectedRec);
             editRecController.setParentController(this);
         });
@@ -150,7 +150,7 @@ public class LkDocControllerImpl extends BaseController implements LkDocControll
     }
 
     public void openEditDocWindow() {
-        EditUserControllerImpl editDocController = (EditUserControllerImpl) newWin("edit-user-view.fxml");
+        EditUserPresenter editDocController = (EditUserPresenter) newWin("edit-user-view.fxml");
         try {
             editDocController.setUser(DBhandler.getConnect().getUserById(this.doctor.getUserId()));
         } catch (SQLException | ClassNotFoundException e) {

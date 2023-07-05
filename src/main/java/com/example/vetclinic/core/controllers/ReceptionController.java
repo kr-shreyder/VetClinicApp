@@ -2,9 +2,9 @@ package com.example.vetclinic.core.controllers;
 
 import com.example.vetclinic.core.interfaces.EditRecController;
 import com.example.vetclinic.core.models.Reception;
-import com.example.vetclinic.presentation.CreateRecControllerImpl;
-import com.example.vetclinic.presentation.EditRecControllerImpl;
-import com.example.vetclinic.presentation.LkDocControllerImpl;
+import com.example.vetclinic.presentation.CreateRecPresenter;
+import com.example.vetclinic.presentation.EditRecPresenter;
+import com.example.vetclinic.presentation.LkDocPresenter;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -13,17 +13,17 @@ import java.util.ArrayList;
 
 public class ReceptionController extends BaseController {
     EditRecController editRecController;
-    CreateRecControllerImpl createRecController;
-    LkDocControllerImpl lkDocController;
-    public ReceptionController(CreateRecControllerImpl createRecController) throws SQLException, ClassNotFoundException {
+    CreateRecPresenter createRecController;
+    LkDocPresenter lkDocController;
+    public ReceptionController(CreateRecPresenter createRecController) throws SQLException, ClassNotFoundException {
         super();
         this.createRecController = createRecController;
     }
-    public ReceptionController(EditRecControllerImpl editRecController) throws SQLException, ClassNotFoundException {
+    public ReceptionController(EditRecPresenter editRecController) throws SQLException, ClassNotFoundException {
         super();
         this.editRecController = editRecController;
     }
-    public ReceptionController(LkDocControllerImpl lkDocController) throws SQLException, ClassNotFoundException {
+    public ReceptionController(LkDocPresenter lkDocController) throws SQLException, ClassNotFoundException {
         super();
         this.lkDocController = lkDocController;
     }

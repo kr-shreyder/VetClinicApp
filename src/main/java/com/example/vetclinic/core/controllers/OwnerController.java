@@ -14,10 +14,11 @@ public class OwnerController extends BaseController {
         this.regController = regController;
     }
 
-    public void create(String login, String password, String name, String phoneNumber, String address) {
+    public void create(String login, String password, String name, String phoneNumber, String address) throws SQLException, ClassNotFoundException {
         User user = new User(login, password);
         dbHandler.createUser(user);
         Owner owner = new Owner(user.getId(), name, phoneNumber, address);
         dbHandler.createOwner(owner);
+        regController.exit();
     }
 }

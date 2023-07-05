@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Service {
-    public static String hashPass(String pass) {
+    public static String hashPass(String passw) {
         MessageDigest md5 = null;
         try {
             md5 = MessageDigest.getInstance("MD5");
@@ -12,7 +12,7 @@ public class Service {
             e.printStackTrace();
         }
         assert md5 != null;
-        byte[] bytes = md5.digest(pass.getBytes());
+        byte[] bytes = md5.digest(passw.getBytes());
         StringBuilder hashPass = new StringBuilder();
         for (byte b : bytes) {
             hashPass.append(String.format("%02X", b));

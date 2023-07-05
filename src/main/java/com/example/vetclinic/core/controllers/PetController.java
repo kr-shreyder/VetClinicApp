@@ -7,18 +7,21 @@ import com.example.vetclinic.presentation.LkOwnControllerImpl;
 
 import java.sql.SQLException;
 
-public class PetController extends BaseController{
+public class PetController extends BaseController {
     private CreatePetControllerImpl createPetController;
     private EditPetControllerImpl editPetController;
     private LkOwnControllerImpl lkOwnController;
+
     public PetController(CreatePetControllerImpl createPetController) throws SQLException, ClassNotFoundException {
         super();
         this.createPetController = createPetController;
     }
+
     public PetController(EditPetControllerImpl editPetController) throws SQLException, ClassNotFoundException {
         super();
         this.editPetController = editPetController;
     }
+
     public PetController(LkOwnControllerImpl lkOwnController) throws SQLException, ClassNotFoundException {
         super();
         this.lkOwnController = lkOwnController;

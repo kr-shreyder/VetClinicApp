@@ -49,7 +49,7 @@
                         <Font name="Berlin Sans FB" size="12.0" />
                     </font>
                 </Label>
-                <Button fx:id="createRecBut" layoutX="208.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Добавить приём">
+                <Button fx:id="createRecBut" layoutX="208.0" layoutY="104.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #F0FFFF;" text="Добавить прием">
                     <effect>
                         <DropShadow height="15.0" offsetY="1.0" radius="6.25" width="12.0" />
                     </effect>

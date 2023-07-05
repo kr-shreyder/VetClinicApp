@@ -20,7 +20,6 @@ public class CreatePetControllerImpl extends BaseController implements CreatePet
     @FXML
     private Button savePetBut1;
 
-    Pet pet;
     LkOwnControllerImpl lkOwnController;
     Owner owner;
 

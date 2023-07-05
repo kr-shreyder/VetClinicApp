@@ -31,6 +31,7 @@ public class RegControllerImpl extends BaseController implements RegController {
         regButton.setOnAction(event -> {
             try {
                 regNewUser();
+                newWin("auth-view.fxml");
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -46,5 +47,9 @@ public class RegControllerImpl extends BaseController implements RegController {
 
         OwnerController ownerController = new OwnerController(this);
         ownerController.create(login, password, name, phoneNumber, address);
+    }
+
+    public void exit() throws SQLException, ClassNotFoundException {
+        regButton.getScene().getWindow().hide();
     }
 }

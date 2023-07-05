@@ -9,6 +9,6 @@ public class BaseController {
     protected final DBhandler dbHandler;
 
     public BaseController() throws SQLException, ClassNotFoundException {
-        this.dbHandler = DBhandler.getInstance();
+        this.dbHandler = DBhandler.getConnect();
     }
 }

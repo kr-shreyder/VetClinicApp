@@ -23,7 +23,7 @@ public class DBhandler {
         return dbConnector;
     }
 
-    public static DBhandler getInstance() throws SQLException, ClassNotFoundException {
+    public static DBhandler getConnect() throws SQLException, ClassNotFoundException {
         if (instance == null) {
             instance = new DBhandler();
         } else if (instance.getConnection().isClosed()) {

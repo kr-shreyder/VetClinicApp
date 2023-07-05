@@ -123,7 +123,7 @@ public class LkDocControllerImpl extends BaseController implements LkDocControll
     }
 
     public void setRecs(int doctorId) throws SQLException, ClassNotFoundException {
-        ArrayList<Reception> recs = DBhandler.getInstance().getReceptionsByDoctorId(doctorId);
+        ArrayList<Reception> recs = DBhandler.getConnect().getReceptionsByDoctorId(doctorId);
 
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -140,7 +140,7 @@ public class LkDocControllerImpl extends BaseController implements LkDocControll
     }
 
     public void updateTableRec() throws SQLException, ClassNotFoundException {
-        ArrayList<Reception> recs = DBhandler.getInstance().getReceptionsByDoctorId(this.doctor.getId());
+        ArrayList<Reception> recs = DBhandler.getConnect().getReceptionsByDoctorId(this.doctor.getId());
 
         tableRec.getItems().clear();
 
@@ -152,7 +152,7 @@ public class LkDocControllerImpl extends BaseController implements LkDocControll
     public void openEditDocWindow() {
         EditUserControllerImpl editDocController = (EditUserControllerImpl) newWin("edit-user-view.fxml");
         try {
-            editDocController.setUser(DBhandler.getInstance().getUserById(this.doctor.getUserId()));
+            editDocController.setUser(DBhandler.getConnect().getUserById(this.doctor.getUserId()));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

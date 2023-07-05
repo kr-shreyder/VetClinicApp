@@ -103,7 +103,7 @@ public class LkOwnControllerImpl extends BaseController implements LkOwnControll
     }
 
     public void setPets(int ownerId) throws SQLException, ClassNotFoundException {
-        ArrayList<Pet> pets = DBhandler.getInstance().getPetsByOwnerId(ownerId);
+        ArrayList<Pet> pets = DBhandler.getConnect().getPetsByOwnerId(ownerId);
 
         breedPetCol.setCellValueFactory(new PropertyValueFactory<>("breed"));
         namePetCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -112,7 +112,7 @@ public class LkOwnControllerImpl extends BaseController implements LkOwnControll
     }
 
     public void updateTableData() throws SQLException, ClassNotFoundException {
-        ArrayList<Pet> pets = DBhandler.getInstance().getPetsByOwnerId(this.owner.getId());
+        ArrayList<Pet> pets = DBhandler.getConnect().getPetsByOwnerId(this.owner.getId());
 
         tablePet.getItems().clear();
 
@@ -124,7 +124,7 @@ public class LkOwnControllerImpl extends BaseController implements LkOwnControll
     public void openEditOwnWindow () {
         EditUserControllerImpl editOwnController = (EditUserControllerImpl) newWin("edit-user-view.fxml");
         try {
-            editOwnController.setUser(DBhandler.getInstance().getUserById(this.owner.getUserId()));
+            editOwnController.setUser(DBhandler.getConnect().getUserById(this.owner.getUserId()));
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -10,7 +10,7 @@ import com.example.vetclinic.presentation.Service;
 
 import java.sql.SQLException;
 
-public class UserController extends BaseController{
+public class UserController extends BaseController {
     AuthController authController;
     EditUserController editUserController;
     public UserController (AuthControllerImpl authController) throws SQLException, ClassNotFoundException {

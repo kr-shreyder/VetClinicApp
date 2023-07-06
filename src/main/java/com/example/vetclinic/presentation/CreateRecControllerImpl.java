@@ -12,7 +12,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CreateRecPresenter extends BaseController implements CreateRecController {
+public class CreateRecControllerImpl extends BaseController implements CreateRecController {
 
     @FXML
     private TextField dateField;
@@ -31,7 +31,7 @@ public class CreateRecPresenter extends BaseController implements CreateRecContr
 
     @FXML
     private TextField timeField;
-    LkDocPresenter lkDocController;
+    LkDocControllerImpl lkDocController;
     Doctor doctor;
 
     @FXML
@@ -61,7 +61,7 @@ public class CreateRecPresenter extends BaseController implements CreateRecContr
         receptionController.create(date, time, this.doctor.getId(), ownerId, petId, diseases);
     }
 
-    public void setParentController(LkDocPresenter lkDocController) {
+    public void setParentController(LkDocControllerImpl lkDocController) {
         this.lkDocController = lkDocController;
     }
 

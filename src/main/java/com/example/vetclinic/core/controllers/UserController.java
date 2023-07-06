@@ -5,7 +5,7 @@ import com.example.vetclinic.core.interfaces.EditUserController;
 import com.example.vetclinic.core.models.Doctor;
 import com.example.vetclinic.core.models.Owner;
 import com.example.vetclinic.core.models.User;
-import com.example.vetclinic.presentation.AuthPresenter;
+import com.example.vetclinic.presentation.AuthControllerImpl;
 import com.example.vetclinic.presentation.Service;
 
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class UserController extends BaseController {
     AuthController authController;
     EditUserController editUserController;
-    public UserController (AuthPresenter authController) throws SQLException, ClassNotFoundException {
+    public UserController (AuthControllerImpl authController) throws SQLException, ClassNotFoundException {
         super();
         this.authController = authController;
     }

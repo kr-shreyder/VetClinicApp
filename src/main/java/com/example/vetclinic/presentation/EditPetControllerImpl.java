@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class EditPetPresenter extends BaseController implements EditPetController {
+public class EditPetControllerImpl extends BaseController implements EditPetController {
 
     @FXML
     private TextField breedPetText;
@@ -21,7 +21,7 @@ public class EditPetPresenter extends BaseController implements EditPetControlle
     private Button savePetBut1;
 
     private Pet pet;
-    LkOwnPresenter lkOwnController;
+    LkOwnControllerImpl lkOwnController;
 
 
     @FXML
@@ -49,7 +49,7 @@ public class EditPetPresenter extends BaseController implements EditPetControlle
         this.pet = pet;
     }
 
-    public void setParentController(LkOwnPresenter lkOwnController) {
+    public void setParentController(LkOwnControllerImpl lkOwnController) {
         this.lkOwnController = lkOwnController;
     }
 

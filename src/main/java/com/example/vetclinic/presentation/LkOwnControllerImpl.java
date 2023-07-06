@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LkOwnPresenter extends BaseController implements LkOwnController {
+public class LkOwnControllerImpl extends BaseController implements LkOwnController {
     @FXML
     private Label addressText;
 
@@ -53,7 +53,7 @@ public class LkOwnPresenter extends BaseController implements LkOwnController {
     @FXML
     void initialize() {
         createPetBut.setOnAction(event -> {
-            CreatePetPresenter createPetController = (CreatePetPresenter) newWin("create-pet-view.fxml");
+            CreatePetControllerImpl createPetController = (CreatePetControllerImpl) newWin("create-pet-view.fxml");
             try {
                 createPetController.setPetOwner(this.owner);
             } catch (SQLException | ClassNotFoundException e) {
@@ -64,7 +64,7 @@ public class LkOwnPresenter extends BaseController implements LkOwnController {
 
         editPetBut.setOnAction(event -> {
             Pet selectedPet = tablePet.getSelectionModel().getSelectedItem();
-            EditPetPresenter editPetController = (EditPetPresenter) newWin("edit-pet-view.fxml");
+            EditPetControllerImpl editPetController = (EditPetControllerImpl) newWin("edit-pet-view.fxml");
             editPetController.setPet(selectedPet);
             editPetController.setParentController(this);
         });
@@ -122,7 +122,7 @@ public class LkOwnPresenter extends BaseController implements LkOwnController {
     }
 
     public void openEditOwnWindow () {
-        EditUserPresenter editOwnController = (EditUserPresenter) newWin("edit-user-view.fxml");
+        EditUserControllerImpl editOwnController = (EditUserControllerImpl) newWin("edit-user-view.fxml");
         try {
             editOwnController.setUser(DBhandler.getConnect().getUserById(this.owner.getUserId()));
         } catch (SQLException | ClassNotFoundException e) {

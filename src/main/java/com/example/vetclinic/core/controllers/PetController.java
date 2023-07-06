@@ -1,28 +1,28 @@
 package com.example.vetclinic.core.controllers;
 
 import com.example.vetclinic.core.models.Pet;
-import com.example.vetclinic.presentation.CreatePetPresenter;
-import com.example.vetclinic.presentation.EditPetPresenter;
-import com.example.vetclinic.presentation.LkOwnPresenter;
+import com.example.vetclinic.presentation.CreatePetControllerImpl;
+import com.example.vetclinic.presentation.EditPetControllerImpl;
+import com.example.vetclinic.presentation.LkOwnControllerImpl;
 
 import java.sql.SQLException;
 
 public class PetController extends BaseController {
-    private CreatePetPresenter createPetController;
-    private EditPetPresenter editPetController;
-    private LkOwnPresenter lkOwnController;
+    private CreatePetControllerImpl createPetController;
+    private EditPetControllerImpl editPetController;
+    private LkOwnControllerImpl lkOwnController;
 
-    public PetController(CreatePetPresenter createPetController) throws SQLException, ClassNotFoundException {
+    public PetController(CreatePetControllerImpl createPetController) throws SQLException, ClassNotFoundException {
         super();
         this.createPetController = createPetController;
     }
 
-    public PetController(EditPetPresenter editPetController) throws SQLException, ClassNotFoundException {
+    public PetController(EditPetControllerImpl editPetController) throws SQLException, ClassNotFoundException {
         super();
         this.editPetController = editPetController;
     }
 
-    public PetController(LkOwnPresenter lkOwnController) throws SQLException, ClassNotFoundException {
+    public PetController(LkOwnControllerImpl lkOwnController) throws SQLException, ClassNotFoundException {
         super();
         this.lkOwnController = lkOwnController;
     }

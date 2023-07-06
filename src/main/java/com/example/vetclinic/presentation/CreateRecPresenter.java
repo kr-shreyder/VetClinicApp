@@ -12,7 +12,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CreateRecPresenter extends BasePresenter implements CreateRecController {
+public class CreateRecPresenter extends BaseController implements CreateRecController {
 
     @FXML
     private TextField dateField;

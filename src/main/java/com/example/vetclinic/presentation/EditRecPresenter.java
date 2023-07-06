@@ -12,7 +12,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class EditRecPresenter extends BasePresenter implements EditRecController {
+public class EditRecPresenter extends BaseController implements EditRecController {
 
     @FXML
     private TextField dateField;

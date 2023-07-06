@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class LkDocPresenter extends BasePresenter implements LkDocController {
+public class LkDocPresenter extends BaseController implements LkDocController {
     @FXML
     private Label addressText;
 

@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class EditUserPresenter extends BasePresenter implements EditUserController {
+public class EditUserPresenter extends BaseController implements EditUserController {
     @FXML
     private TextField newLogin;
 

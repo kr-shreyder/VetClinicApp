@@ -10,7 +10,7 @@ import com.example.vetclinic.core.models.Owner;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class AuthPresenter extends BasePresenter implements AuthController {
+public class AuthPresenter extends BaseController implements AuthController {
 
     @FXML
     private TextField loginField;

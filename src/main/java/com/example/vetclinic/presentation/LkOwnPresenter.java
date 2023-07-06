@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class LkOwnPresenter extends BasePresenter implements LkOwnController {
+public class LkOwnPresenter extends BaseController implements LkOwnController {
     @FXML
     private Label addressText;
 

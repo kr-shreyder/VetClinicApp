@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class CreatePetPresenter extends BasePresenter implements CreatePetController {
+public class CreatePetPresenter extends BaseController implements CreatePetController {
     @FXML
     private TextField breedPetText1;
 

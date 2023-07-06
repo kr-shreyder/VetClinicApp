@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 
 import java.sql.SQLException;
 
-public class RegPresenter extends BasePresenter implements RegController {
+public class RegPresenter extends BaseController implements RegController {
     @FXML
     private TextField loginField;
 
